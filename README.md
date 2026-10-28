@@ -1,7 +1,7 @@
 # OMNonlinearSolvers
 
 [![CI][ci-badge]][ci]
-[![Coverage][coverage-badge]][coverage]
+[![Coverage][codecov-badge]][codecov]
 [![Documentation][docs-badge]][docs]
 
 The nonlinear solvers of [OpenModelica][openmodelica], in Rust. The repository
@@ -115,7 +115,8 @@ see the [OpenModelica Run-time System Public License][osmc-runtime].
 [c-source]: https://github.com/OpenModelica/OpenModelica/blob/18d4ff455d1beceb4709d770ca4faf53d65732da/OMCompiler/SimulationRuntime/c/simulation/solver/nonlinearSolverHomotopy.c
 [ci-badge]: https://github.com/OpenModelica/OMNonlinearSolvers/actions/workflows/ci.yml/badge.svg
 [ci]: https://github.com/OpenModelica/OMNonlinearSolvers/actions/workflows/ci.yml
-[coverage-badge]: https://img.shields.io/endpoint?url=https://openmodelica.github.io/OMNonlinearSolvers/coverage/badge.json
+[codecov-badge]: https://codecov.io/gh/OpenModelica/OMNonlinearSolvers/graph/badge.svg
+[codecov]: https://app.codecov.io/gh/OpenModelica/OMNonlinearSolvers
 [coverage]: https://openmodelica.github.io/OMNonlinearSolvers/coverage/
 [docs-badge]: https://img.shields.io/badge/docs-main-blue
 [docs]: https://openmodelica.github.io/OMNonlinearSolvers/

@@ -103,6 +103,14 @@ jobs:
         with:
           tool: cargo-llvm-cov
       - run: cargo llvm-cov --lcov --output-path lcov.info
+      # Pull requests from forks get no secrets, Codecov accepts their
+      # upload without a token
+      - uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7.1.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: lcov.info
+          disable_search: true
+          fail_ci_if_error: true
       - name: Coverage summary
         run: |
           echo '## Code coverage' >> "$GITHUB_STEP_SUMMARY"

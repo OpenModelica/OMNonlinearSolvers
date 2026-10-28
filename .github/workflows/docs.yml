@@ -36,11 +36,6 @@ jobs:
           # rustdoc has no top-level index.html, redirect to the crate docs
           echo '<meta http-equiv="refresh" content="0; url=openmodelica_homotopy/index.html">' > _site/index.html
           cp -r target/llvm-cov/html _site/coverage
-          # shields.io endpoint for the coverage badge in the README
-          percent=$(cargo llvm-cov report --json --summary-only | jq '.data[0].totals.lines.percent')
-          color=$(jq -nr --argjson p "$percent" 'if $p >= 80 then "brightgreen" elif $p >= 60 then "yellow" else "red" end')
-          jq -n --argjson p "$percent" --arg c "$color" \
-            '{schemaVersion: 1, label: "coverage", message: "\($p | floor)%", color: $c}' > _site/coverage/badge.json
       - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
