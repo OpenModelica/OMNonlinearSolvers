@@ -390,7 +390,6 @@ impl HomotopySolver {
         if let Start::Solved = start {
             return Ok(Solved::StartPoint);
         }
-        model.start_point_checked();
 
         let prepared = matches!(start, Start::Ready);
         match self.newton_then_fallback(model, fallback, linear_solver, prepared, x) {
