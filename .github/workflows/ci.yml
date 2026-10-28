@@ -66,9 +66,9 @@ jobs:
       # The build regenerates the header, it must match the committed one
       - name: C header is up to date
         run: |
-          if [ -n "$(git status --porcelain -- homotopy_capi/include)" ]; then
-            echo "::error::homotopy_capi/include/homotopy_capi.h is out of date, build homotopy_capi and commit the header"
-            git diff -- homotopy_capi/include
+          if [ -n "$(git status --porcelain -- openmodelica_homotopy_capi/include)" ]; then
+            echo "::error::openmodelica_homotopy_capi/include/openmodelica_homotopy_capi.h is out of date, build openmodelica_homotopy_capi and commit the header"
+            git diff -- openmodelica_homotopy_capi/include
             exit 1
           fi
       - run: cargo test

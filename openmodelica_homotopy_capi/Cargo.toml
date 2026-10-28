@@ -1,0 +1,23 @@
+[package]
+name = "openmodelica_homotopy_capi"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+# staticlib: linked into a C host like the OpenModelica C runtime.
+# rlib: lets Rust tests and other crates use it.
+crate-type = ["staticlib", "rlib"]
+
+[dependencies]
+faer.workspace = true
+openmodelica_homotopy = { path = "../openmodelica_homotopy" }
+log.workspace = true
+openmodelica_newton = { path = "../openmodelica_newton" }
+openmodelica_nls_model = { path = "../openmodelica_nls_model" }
+
+[build-dependencies]
+cbindgen = "0.29.4"
+
+[lints]
+workspace = true

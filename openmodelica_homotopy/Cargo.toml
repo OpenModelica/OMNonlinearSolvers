@@ -1,0 +1,18 @@
+[package]
+name = "openmodelica_homotopy"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+faer.workspace = true
+openmodelica_nls_model = { path = "../openmodelica_nls_model" }
+openmodelica_total_pivot_solver = { path = "../openmodelica_total_pivot_solver" }
+log.workspace = true
+openmodelica_newton = { path = "../openmodelica_newton" }
+
+[dev-dependencies]
+env_logger.workspace = true
+
+[lints]
+workspace = true

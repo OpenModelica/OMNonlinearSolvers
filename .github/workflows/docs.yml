@@ -36,7 +36,7 @@ jobs:
           mkdir _site
           cp -r target/doc/. _site/
           # rustdoc has no top-level index.html, redirect to the crate docs
-          echo '<meta http-equiv="refresh" content="0; url=homotopy_core/index.html">' > _site/index.html
+          echo '<meta http-equiv="refresh" content="0; url=openmodelica_homotopy/index.html">' > _site/index.html
           cp -r target/llvm-cov/html _site/coverage
           # shields.io endpoint for the coverage badge in the README
           percent=$(cargo llvm-cov report --json --summary-only | jq '.data[0].totals.lines.percent')

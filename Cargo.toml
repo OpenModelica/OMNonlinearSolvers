@@ -1,12 +1,12 @@
 [workspace]
 resolver = "3"
 members = [
-    "nls_model",
-    "permuted_matrix",
-    "total_pivot_solver",
-    "newton",
-    "homotopy_core",
-    "homotopy_capi",
+    "openmodelica_nls_model",
+    "openmodelica_permuted_matrix",
+    "openmodelica_total_pivot_solver",
+    "openmodelica_newton",
+    "openmodelica_homotopy",
+    "openmodelica_homotopy_capi",
 ]
 
 [workspace.package]

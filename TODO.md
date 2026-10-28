@@ -3,17 +3,18 @@
 * Offer hybrd of Minpack to pure Rust users. The OpenModelica glue passes
   `solveHybrd` of the C runtime as the fallback of the C interface, a Rust
   user could pass `SimulationRuntime/rust/minpack` of OpenModelica as a
-  `homotopy_core::Fallback`. Also check whether hybrj, with the analytical
+  `openmodelica_homotopy::Fallback`. Also check whether hybrj, with the analytical
   Jacobian, is worth it.
 * Test how our implementation compares to a newton algorithm from
  [newton_rootfinder][newton_rootfinder] or [nrfind][nrfind] (or similar)
-* Move `ClosureModel` from `nls_model` into a test-support crate, e.g.
-  `nls_test_problems`, used only as dev-dependency, so it is no longer part of
-  the public API of `nls_model`. The crate can also collect standard test
-  problems for nonlinear solvers (e.g. Rosenbrock's function, Powell's
-  singular function, Broyden's tridiagonal function) and small systems from
-  OpenModelica models, shared by the tests of `newton`, `homotopy_core` and
-  regression tests against the C solver. Do this when the Newton tests need
+* Move `ClosureModel` from `openmodelica_nls_model` into a test-support crate,
+  e.g. `openmodelica_nls_test_problems`, used only as dev-dependency, so it is
+  no longer part of the public API of `openmodelica_nls_model`. The crate can
+  also collect standard test problems for nonlinear solvers (e.g. Rosenbrock's
+  function, Powell's singular function, Broyden's tridiagonal function) and
+  small systems from OpenModelica models, shared by the tests of
+  `openmodelica_newton`, `openmodelica_homotopy` and regression tests against
+  the C solver. Do this when the Newton tests need
   the same test systems in several crates.
 * `SystemInfo` has public members, so a caller could input wrong values. Add
   getters.

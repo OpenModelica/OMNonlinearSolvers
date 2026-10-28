@@ -150,9 +150,9 @@ Bottom-up along the call graph, starting with what every algorithm needs:
    the numerical Jacobian (`getNumericalJacobianHomotopy`) as default
    implementation and the row and column scaling (`scaleMatrixRows`,
    `matVecMultAbsBB`, `xScaling`, `resScaling`).
-2. **Newton** (`newtonAlgorithm`) in the `newton` crate, split into line
-   search, stagnation tracking (including `newtonLimitCycleStep`), stopping
-   decision and Jacobian refresh.
+2. **Newton** (`newtonAlgorithm`) in the `openmodelica_newton` crate, split
+   into line search, stagnation tracking (including `newtonLimitCycleStep`),
+   stopping decision and Jacobian refresh.
 3. **Homotopy** (`homotopyAlgorithm`): predictor, corrector and step control as
    separate functions. The homotopy variants (Newton, fixpoint) become an enum
    implementing the residual trait for `H(x, λ)`.
@@ -168,6 +168,6 @@ Not ported one by one:
 * the `print*` and `debug*` functions, they become `trace!` with `Display`.
 
 The handling of mixed systems (relations) and `discreteCall` is runtime state,
-not numerics, and stays in OpenModelica's glue to `homotopy_capi`.
+not numerics, and stays in OpenModelica's glue to `openmodelica_homotopy_capi`.
 
 [c-source]: https://github.com/OpenModelica/OpenModelica/blob/18d4ff455d1beceb4709d770ca4faf53d65732da/OMCompiler/SimulationRuntime/c/simulation/solver/nonlinearSolverHomotopy.c
