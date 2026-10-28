@@ -1,0 +1,15 @@
+[package]
+name = "openmodelica_nls_model"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+faer.workspace = true
+log.workspace = true
+
+[dev-dependencies]
+equator.workspace = true
+
+[lints]
+workspace = true

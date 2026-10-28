@@ -6,9 +6,10 @@ test_workspace = true
 
 # Mutants that can't change the behaviour of the solver. Two more can't be
 # excluded by name without excluding mutants that are caught, they stay
-# missed: `rank < n_rows` → `>` in total_pivot_solver/src/solve.rs only
-# guards a warning, and `i + 1` → `i * 1` in eliminate_below_pivot only
-# eliminates the pivot column too, which is set to 0 right afterwards.
+# missed: `rank < n_rows` → `>` in
+# openmodelica_total_pivot_solver/src/solve.rs only guards a warning, and
+# `i + 1` → `i * 1` in eliminate_below_pivot only eliminates the pivot column
+# too, which is set to 0 right afterwards.
 exclude_re = [
   # `h *= -1.0` and `h /= -1.0` are the same
   'model_functions\.rs.*replace \*= with /= in forward_differences',
