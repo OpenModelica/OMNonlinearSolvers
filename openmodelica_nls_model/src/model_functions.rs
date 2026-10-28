@@ -49,8 +49,10 @@ pub enum EvalError {
 /// `H(x, λ)` with `n` residuals and `n+1` unknowns, is non-square.
 ///
 /// [`info`](Self::info) and [`eval`](Self::eval) are required,
-/// [`derivative`](Self::derivative) defaults to a numerical Jacobian and
-/// [`start_point_checked`](Self::start_point_checked) to doing nothing.
+/// [`derivative`](Self::derivative) defaults to a numerical Jacobian.
+///
+/// The solvers assume that `F` only depends on `x`. A model with events keeps
+/// its relations fixed while a solver evaluates it.
 pub trait ModelFunctions {
     /// Facts about the system: sizes, nominal values, bounds and tearing kind.
     fn info(&self) -> &SystemInfo;
@@ -102,14 +104,6 @@ pub trait ModelFunctions {
     ) -> Result<(), EvalError> {
         forward_differences(self, x, fx, x_scaling, &mut x.to_vec(), jacobian)
     }
-
-    /// Called by the homotopy solver when it has checked its start point,
-    /// evaluated `F` and the Jacobian there, before Newton's method and the
-    /// homotopies start. Not called if the start point solves the system.
-    ///
-    /// The OpenModelica C runtime freezes the relations of a model with
-    /// events from here on, `solveContinuous` in `solveHomotopy`.
-    fn start_point_checked(&mut self) {}
 }
 
 /// The scaled Jacobian `J(x)·diag(x_scaling)` of `model` by forward

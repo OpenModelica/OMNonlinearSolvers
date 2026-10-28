@@ -212,7 +212,6 @@ fn model(size: usize, residual: HomResidual) -> HomModel {
         observer: null(),
         fallback: None,
         linear_solver: None,
-        start_point_checked: None,
     }
 }
 
@@ -313,28 +312,6 @@ fn failing_linear_solver_test() {
     assert_eq!(status, HomStatus::NotSolved);
     assert_eq!(calls, 1);
     assert_eq!(x, [1.5, 1.5], "unchanged");
-}
-
-/// Counts its calls in `user`
-unsafe extern "C" fn count_checked(user: *mut c_void) {
-    unsafe { *(user as *mut usize) += 1 };
-}
-
-#[test]
-/// The host is told once that the start point is checked
-fn start_point_checked_test() {
-    let mut calls = 0usize;
-    let model = HomModel {
-        user: (&raw mut calls).cast(),
-        start_point_checked: Some(count_checked),
-        ..model(1, Some(cubic))
-    };
-    let mut x = [0.0];
-
-    let (status, _) = solve(&model, &mut x);
-
-    assert_eq!(status, HomStatus::Solved);
-    assert_eq!(calls, 1);
 }
 
 #[test]

@@ -74,12 +74,6 @@ pub type HomJacobian = Option<
 /// set, and before the next homotopy. Must return like [`HomResidual`].
 pub type HomFallback = Option<unsafe extern "C" fn(user: *mut c_void, x: *mut f64) -> c_int>;
 
-/// Called when the solver has checked its start point, evaluated the
-/// residuals and the Jacobian there, before Newton's method and the
-/// homotopies start. Not called if the start point solves the system. Must
-/// return like [`HomResidual`].
-pub type HomStartPointChecked = Option<unsafe extern "C" fn(user: *mut c_void)>;
-
 /// Solve the linear system `matrix·y = rhs` of a step of Newton's method
 /// after the first, for example with `dgesv` of LAPACK.
 ///
@@ -132,8 +126,6 @@ pub struct HomModel {
     /// Solves the linear systems of Newton's method after its first step, or
     /// `NULL` for total pivoting, which solves the first step
     pub linear_solver: HomLinearSolver,
-    /// Told when the start point is checked, or `NULL`
-    pub start_point_checked: HomStartPointChecked,
 }
 
 /// The fallback of a [`HomModel`] as a fallback of the solver.
@@ -363,13 +355,6 @@ impl ModelFunctions for CModel<'_> {
 
     fn eval(&mut self, x: &[f64], res: &mut [f64]) -> Result<(), EvalError> {
         self.residual.eval(x, res)
-    }
-
-    fn start_point_checked(&mut self) {
-        if let Some(callback) = self.residual.model.start_point_checked {
-            // SAFETY: the callback gets the host's pointer only
-            unsafe { callback(self.residual.model.user) };
-        }
     }
 
     /// The Jacobian callback's `J(x)`, each column `j` multiplied by

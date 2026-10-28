@@ -101,9 +101,10 @@ pointers.
 * The Jacobian is evaluated with its columns scaled by the variable scaling
   of the solver, `J·diag(s)`. The C runtime scales inside its Jacobian
   functions, so scaling afterwards would round differently.
-* `start_point_checked` tells a model when the homotopy solver has checked its
-  start point, where the C runtime freezes the relations of a model with
-  events. The OpenModelica glue does that in this callback.
+* The solvers assume that `F` only depends on `x`: the relations of a model
+  with events are fixed while it is solved. Whether they may switch, and
+  solving again when a solution switches them, is up to the host. The
+  OpenModelica glue does that for mixed systems, like `solveHomotopy`.
 
 ### Facts about a system in `SystemInfo`
 

@@ -194,12 +194,6 @@ typedef int (*HomLinearSolver)(void *user,
                                double *rhs,
                                double *determinant);
 
-// Called when the solver has checked its start point, evaluated the
-// residuals and the Jacobian there, before Newton's method and the
-// homotopies start. Not called if the start point solves the system. Must
-// return like [`HomResidual`].
-typedef void (*HomStartPointChecked)(void *user);
-
 // A nonlinear system `F(x) = 0` of a C host.
 typedef struct HomModel {
   // Passed to the callbacks as it is
@@ -230,8 +224,6 @@ typedef struct HomModel {
   // Solves the linear systems of Newton's method after its first step, or
   // `NULL` for total pivoting, which solves the first step
   HomLinearSolver linear_solver;
-  // Told when the start point is checked, or `NULL`
-  HomStartPointChecked start_point_checked;
 } HomModel;
 
 // Statistics of the latest solve of a [`HomSolver`].
