@@ -169,8 +169,11 @@ Every pull request and push to `main` runs [ci.yml](.github/workflows/ci.yml),
 which checks the formatting, the license headers and the Markdown files, runs
 Clippy with warnings as errors, builds the crate, checks that the C header is up
 to date, runs the tests, runs the C tests, and builds the documentation. The
-coverage job prints a summary on the run's page and uploads the HTML report as
-the `coverage` artifact.
+coverage job prints a summary on the run's page, uploads the HTML report as
+the `coverage` artifact and the coverage to [Codecov][codecov]. Codecov checks
+a pull request against [codecov.yml](codecov.yml): at least 90% of the lines
+it adds or changes are covered, and the total coverage drops by at most 0.5
+percentage points.
 
 [mutants.yml](.github/workflows/mutants.yml) runs cargo-mutants: on a pull
 request for the mutants in its changes, every Monday and on demand for all of
@@ -180,5 +183,6 @@ as an artifact, but doesn't fail for missed mutants.
 [cargo-llvm-cov]: https://github.com/taiki-e/cargo-llvm-cov
 [cargo-mutants]: https://mutants.rs/
 [cbindgen]: https://github.com/mozilla/cbindgen
+[codecov]: https://app.codecov.io/gh/OpenModelica/OMNonlinearSolvers
 [markdownlint-cli2]: https://github.com/DavidAnson/markdownlint-cli2
 [rustup]: https://rustup.rs/
